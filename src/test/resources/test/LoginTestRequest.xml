@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="UTF-8"?>
+	<!--
+		edited with XMLSpy v2008 rel. 2 sp2 (http://www.altova.com) by SHOCK
+		(SHOCK)
+	-->
+<root rsFilePath="D:/TEMP/msg/dic/">
+	<task name="登录点1" login="true" disabled="true">
+		<xmldata><![CDATA[<ROOT><JGBM>1501230701</JGBM><CARDNO>SA0701</CARDNO><LX>SA0701</LX></ROOT>]]></xmldata>
+	</task>
+	
+	<task name="209600" description="查询档案 信息" disabled="true"
+		checkError="true" print="true" saveFile="true">
+		<actionid>209600</actionid>
+		<xmldata><![CDATA[<ROOT><CARDNO>441882198209226033</CARDNO><LX>1</LX></ROOT>]]></xmldata>
+	</task>
+	
+	<task name="209601" description="新增档案功能" disabled="true"
+		checkError="true" print="true" saveFile="true">
+		<actionid>209601</actionid>
+		<xmldata><![CDATA[<ROOT><CARDNO></CARDNO><SECRITYNO>B1000</SECRITYNO><SFZH>00000012134</SFZH><SBKH>1011124</SBKH>
+		<XM>chao</XM><XB>女</XB><CSRQ>1990-3-10</CSRQ><JTZZ>广州市天河区</JTZZ><PHONE>13512221187</PHONE><TEL>27654321</TEL><LXRY>黑人</LXRY><LXRDH>91712371</LXRDH>
+		<PASSWORD>11345</PASSWORD><CZRY>面包</CZRY></ROOT>]]></xmldata>
+	</task>
+	
+	<task name="209602" description="修改档案功能" disabled="true"
+		checkError="true" print="true" saveFile="true">
+		<actionid>209602</actionid>
+		<xmldata><![CDATA[<ROOT><ZHID>20</ZHID><CARDNO>101</CARDNO><SECRITYNO>1111</SECRITYNO><SFZH>1222</SFZH><SBKH>1221</SBKH>
+		<XM>超</XM><XB>1</XB><CSRQ>2012-12-13</CSRQ><JTZZ>广东高要1111</JTZZ><PHONE>13721222</PHONE><TEL>08772</TEL>
+		<LXRY>91717371</LXRY><LXRDH>91717371</LXRDH><PASSWORD>12322</PASSWORD><CZRY>chao</CZRY>
+		<BZ>修改数据</BZ><MZH>0000099941</MZH></ROOT>]]></xmldata>
+	</task>
+
+	<task name="209603" description="帐户信息查询功能" disabled="true"
+		checkError="true" print="true" saveFile="true">
+		<actionid>209603</actionid>
+		<xmldata><![CDATA[<ROOT><ZHID>222</ZHID></ROOT>]]></xmldata>
+	</task>
+	
+	<task name="209604" description="挂号类型查询功能" disabled="true"
+		checkError="true" print="true" saveFile="true">
+		<actionid>209604</actionid>
+		<xmldata></xmldata>
+	</task>
+	
+	<task name="209605" description="具体挂号类别的详细科室/医生挂号情况查询" disabled="false"
+		checkError="true" print="true" saveFile="true">
+		<actionid>209605</actionid>
+		<xmldata><![CDATA[<ROOT><MZLB>1</MZLB></ROOT>]]></xmldata>
+	</task>
+	
+	<task name="209606" description="新增挂号信息" disabled="true"
+		checkError="true" print="true" saveFile="true">
+		<actionid>209606</actionid>
+		<xmldata><![CDATA[<ROOT><CARDNO>00008899</CARDNO><LX>0</LX><GHKS>0200</GHKS><GHYS></GHYS><GHFY>1.00</GHFY>
+		<CZRY>小银</CZRY><ZHID>5</ZHID><MZH>0001133</MZH></ROOT>]]></xmldata>
+	</task>
+	
+	<task name="209607" description="新增预约挂号信息" disabled="true"
+		checkError="true" print="true" saveFile="true">
+		<actionid>209607</actionid>
+		<xmldata><![CDATA[<ROOT><CARDNO>441882198408215911</CARDNO><LX>1</LX><MZH>M0001159</MZH><ZHID>4</ZHID>
+		<GHKS>0200</GHKS><GHYS>01020</GHYS><GHFY>4</GHFY><GHRQ>2012-11-01</GHRQ><CZRY>小王</CZRY></ROOT>]]></xmldata>
+	</task>
+	
+	<task name="209608" description="查询挂号信息功能" disabled="true"
+		checkError="true" print="true" saveFile="true">
+		<actionid>209608</actionid> 
+		<xmldata><![CDATA[<ROOT><MZH>aaaaaa99951</MZH><GHRQ>2012-5-10</GHRQ></ROOT>]]></xmldata>
+	</task>
+	
+    <task name="209609" description="退号/预约退号功能" disabled="true"
+		checkError="true" print="true" saveFile="true">
+		<actionid>209609</actionid>
+		<xmldata><![CDATA[<ROOT><LSH>42</LSH><ZHID>32</ZHID><CZRY>111</CZRY><GHRQ>2012-5-10</GHRQ></ROOT>]]></xmldata>
+	</task>
+		
+	<task name="209610" description="查询处方列表信息" disabled="true"
+		checkError="true" print="true" saveFile="true">
+		<actionid>209610</actionid>
+		<xmldata><![CDATA[<ROOT><MZH>aaaaaa99951</MZH><TYPE>0</TYPE><TS>10</TS></ROOT>]]></xmldata>
+	</task>
+	
+	<task name="209611" description="处方清单查询" disabled="true"
+		checkError="true" print="true" saveFile="true">
+		<actionid>209611</actionid>
+		<xmldata><![CDATA[<ROOT><SFID>8701</SFID></ROOT>]]></xmldata>
+	</task>
+	
+	<task name="209612" description="确认缴费功能" disabled="true"
+		checkError="true" print="true" saveFile="true">
+		<actionid>209612</actionid>
+		<xmldata><![CDATA[
+		  <ROOT>
+		    <DATASET NAME="SF">
+		      <ROW>
+			      <MZH>M0001160</MZH>
+			      <LSH>9</LSH>
+			      <SFID>730496</SFID>
+			      <CFRQ>2012-12-05</CFRQ>			      
+			      <ZHID>5</ZHID>  
+				  <SBTCJE>0.0</SBTCJE>
+				  <SBZHJE>0.0</SBZHJE>
+				  <YHZFJE>100</YHZFJE>
+				  <ZJE>100</ZJE>
+				  <SBKH>59383829</SBKH>
+				  <YHKH>2122223</YHKH>
+				  <YHJYLSH>121212</YHJYLSH>
+				  <BANKPNO>2222</BANKPNO>
+				  <YLLB>00</YLLB>
+				  <JYRQ>2012-12-05</JYRQ>
+				  <JYSJ>23:33:56</JYSJ>
+				  <CZRY>8606</CZRY>
+				  <JQM>1122</JQM>      
+		      </ROW>
+		    </DATASET>
+		    <DATASET NAME="MX">
+		      <ROW>
+		         <SFID>730496</SFID>
+				<SICODE>23</SICODE>
+				<HPZCD>23</HPZCD>
+				<STTLTRXNO>33</STTLTRXNO>
+				<TOTALFEE>33</TOTALFEE>
+				<ALLFUNDFEE>33</ALLFUNDFEE>
+				<PARTFUNDFEE>33</PARTFUNDFEE>
+				<PARTSELFFEE>33</PARTSELFFEE>
+				<ALLSELEFEE>33</ALLSELEFEE>
+				<SPECMFEE>33</SPECMFEE>
+				<SPECRATION>33</SPECRATION>
+				<SETTTYPE>33</SETTTYPE>
+				<TTLAUDAMT>3</TTLAUDAMT>
+				<TTLSAUDAMT>3</TTLSAUDAMT>
+				<TTLAUDAMTSM>3</TTLAUDAMTSM>
+				<TTLAUDAMTOM>3</TTLAUDAMTOM>
+				<BMRADIXAMT>3</BMRADIXAMT>
+				<BMBASELINE>3</BMBASELINE>
+				<BMOFAMT>3</BMOFAMT>
+				<BMFPAMT>3</BMFPAMT>
+				<SMRADIXAMT>3</SMRADIXAMT>
+				<SMBASELINE>3</SMBASELINE>
+				<SMOFAMT>3</SMOFAMT>
+				<SMFPAMT>3</SMFPAMT>
+				<OMRADIXAMT>3</OMRADIXAMT>
+				<OMBASELINE>3</OMBASELINE>
+				<OMOFAMT>3</OMOFAMT>
+				<OMFPAMT>3</OMFPAMT>
+				<PAYDATE>3</PAYDATE>
+				<BACKUP1>3</BACKUP1>
+				<BACKUP2>3</BACKUP2>
+				<GWYLB>3</GWYLB>		         
+		      </ROW>
+		    </DATASET>
+		  </ROOT>]]></xmldata>
+	</task>
+	
+	<task name="209613" description="住院基本信息查询功能" disabled="true"
+		checkError="true" print="true" saveFile="true">
+		<actionid>209613</actionid>
+		<xmldata><![CDATA[<ROOT><ZYH>8606</ZYH></ROOT>]]></xmldata>
+	</task>
+	
+	<task name="209614" description="住院押金使用情况查询" disabled="true"
+		checkError="true" print="true" saveFile="true">
+		<actionid>209614</actionid>
+		<xmldata><![CDATA[<ROOT><ZYH>8606</ZYH></ROOT>]]></xmldata>
+	</task>
+	
+	<task name="209615" description="住院押金缴纳功能" disabled="true"
+		checkError="true" print="true" saveFile="true">
+		<actionid>209615</actionid>
+		<xmldata><![CDATA[<ROOT><ZYH>8606</ZYH><JE>8606</JE><ZFFS>8606</ZFFS><CZRY>8606</CZRY>
+		<ZFPZH></ZFPZH><BZ></BZ></ROOT>]]></xmldata>
+	</task>
+	
+	<task name="209616" description="住院清单查询" disabled="true"
+		checkError="true" print="true" saveFile="true">
+		<actionid>209616</actionid>
+		<xmldata><![CDATA[<ROOT><ZYH>8606</ZYH></ROOT>]]></xmldata>
+	</task>
+	
+	<task name="209617" description="住院自助缴费功能" disabled="true"
+		checkError="true" print="true" saveFile="true">
+		<actionid>209617</actionid>
+		<xmldata><![CDATA[<ROOT><ZYH>8606</ZYH></ROOT>]]></xmldata>
+	</task>
+	
+	<task name="209618" description="挂失诊疗卡" disabled="true"
+		checkError="true" print="true" saveFile="true">
+		<actionid>209618</actionid>
+		<xmldata><![CDATA[<ROOT><CARDNO>1112</CARDNO><LX>0</LX><CZRY>超人</CZRY><FLAG>1</FLAG></ROOT>]]></xmldata>
+	</task>
+	
+	<task name="209619" description="补发诊疗卡" disabled="true"
+		checkError="true" print="true" saveFile="true">
+		<actionid>209619</actionid>
+		<xmldata><![CDATA[<ROOT><CARDNO>101</CARDNO><NEWCARDNO>dddd</NEWCARDNO><CZRY>zhongguoren</CZRY></ROOT>]]></xmldata>
+	</task>
+	
+	<task name="209620" description="回收诊疗卡" disabled="true"
+		checkError="true" print="true" saveFile="true">
+		<actionid>209620</actionid>
+		<xmldata><![CDATA[<ROOT><CARDNO>1112</CARDNO><CZRY>dengsc</CZRY></ROOT>]]></xmldata>
+	</task>
+	
+	<task name="209621" description="帐户充值" disabled="true"
+		checkError="true" print="true" saveFile="true">
+		<actionid>209621</actionid>
+		<xmldata><![CDATA[<ROOT><ZHID>20</ZHID><CARDNO>101</CARDNO><JE>1000</JE><JYFS>8</JYFS>
+		<CZRY>1111</CZRY><YHKH>111</YHKH><YHBM>111</YHBM><SFPZH>111</SFPZH><BZ>111</BZ><DBRY>chaoren</DBRY></ROOT>]]></xmldata>
+	</task>
+	
+	<task name="209622" description="帐户消费" disabled="true"
+		checkError="true" print="true" saveFile="true">
+		<actionid>209622</actionid>
+		<xmldata><![CDATA[<ROOT><ZHID>20</ZHID><CARDNO>11</CARDNO><XFJE>-200</XFJE><JYFS>1</JYFS>
+		<CZRY>11</CZRY><JYDD>11</JYDD><SFPZH>11</SFPZH><BZ>11</BZ></ROOT>]]></xmldata>
+	</task>
+	
+	<task name="209623" description="退回余额" disabled="true"
+		checkError="true" print="true" saveFile="true">
+		<actionid>209623</actionid>
+		<xmldata><![CDATA[<ROOT><ZHID>21</ZHID><CARDNO>111</CARDNO><TKJE>2</TKJE><JYFS>1</JYFS>
+		<CZRY>132</CZRY><BZ>退回余额</BZ></ROOT>]]></xmldata>
+	</task>
+	
+	<task name="209624" description="帐户余额查询" disabled="true"
+		checkError="true" print="true" saveFile="true">
+		<actionid>209624</actionid>
+		<xmldata><![CDATA[<ROOT><ZHID>14</ZHID></ROOT>]]></xmldata>
+	</task>
+	
+	<task name="209625" description="帐户信息修改功能" disabled="true"
+		checkError="true" print="true" saveFile="true">
+		<actionid>209625</actionid>
+		<xmldata><![CDATA[<ROOT><XM>chaoren</XM><XB></XB><CSRQ>2011-5-5</CSRQ><SFZH>8606</SFZH><SBKH>8606</SBKH>
+		<JTZZ>8606</JTZZ><PHONE>8606</PHONE><TEL>8606</TEL><PASSWORD></PASSWORD><LXRY>8606</LXRY>
+		<LXRDH>8606</LXRDH><YXRQ>2011-5-5</YXRQ><MAXXFE>8606</MAXXFE><MAXZHYE>8606</MAXZHYE><STATE>2</STATE>
+		<ISHMD>2</ISHMD><ZHLX>0</ZHLX><XGRQ>2011-10-2</XGRQ><XGRY>8606</XGRY><ZHID>15</ZHID></ROOT>]]></xmldata>
+	</task>
+	
+	<task name="209626" description="帐户密码修改功能" disabled="true"
+		checkError="true" print="true" saveFile="true">
+		<actionid>209626</actionid>
+		<xmldata><![CDATA[<ROOT><ZHID>15</ZHID><PASSWORD>aaaa</PASSWORD><CZRY>kobe</CZRY></ROOT>]]></xmldata>
+	</task>
+	
+	<task name="209627" description="帐户锁定/解锁功能" disabled="true"
+		checkError="true" print="true" saveFile="true">
+		<actionid>209627</actionid>
+		<xmldata><![CDATA[<ROOT><ZHID>21</ZHID><LX>1</LX><CZRY>超1111</CZRY></ROOT>]]></xmldata>
+	</task>
+	
+	<task name="209628" description="帐户挂失/解挂功能" disabled="true"
+		checkError="true" print="true" saveFile="true">
+		<actionid>209628</actionid>
+		<xmldata><![CDATA[<ROOT><ZHID>21</ZHID><LX>0</LX><CZRY>aaa</CZRY></ROOT>]]></xmldata>
+	</task>
+	
+	<task name="209629" description="注销帐户功能" disabled="true"
+		checkError="true" print="true" saveFile="true">
+		<actionid>209629</actionid>
+		<xmldata><![CDATA[<ROOT><ZHID>21</ZHID><CZRY>kobe</CZRY></ROOT>]]></xmldata>
+	</task>
+	
+	<task name="209630" description="帐户交易/消费记录查询功能" disabled="true"
+		checkError="true" print="true" saveFile="true">
+		<actionid>209630</actionid>
+		<xmldata><![CDATA[<ROOT><ZHID>20</ZHID><KSRQ>2010-1-1</KSRQ><JSRQ>2012-12-1</JSRQ></ROOT>]]></xmldata>
+	</task>
+	
+	<task name="209631" description="帐户黑名单管理" disabled="true"
+		checkError="true" print="true" saveFile="true">
+		<actionid>209631</actionid>
+		<xmldata><![CDATA[<ROOT><ZHID>21</ZHID><LX>0</LX><CZRY>chao2</CZRY></ROOT>]]></xmldata>
+	</task>
+</root>

@@ -1,0 +1,23 @@
+#MyEclipse Hibernate Properties
+#Mon Jul 09 17:17:56 CST 2012
+genBasicCompId=false
+sessionFactoryName=com.ufida.h.domain.his.HibernateSessionFactory
+profile=
+daoSFId=
+version=3.3
+jndiPath=
+detectM2M=false
+reStrategyClass=
+springDaoFile=
+useJavaTypes=true
+keyGenerator=
+libInstallFolder=<no jars/zips in selected libraries>
+addLibs2Project=true
+genVersionTag=false
+sessionFactoryId=
+basePersistenceClass=
+genAnnotations=false
+reSettingsFile=/ufhealth_jmrmyy/hibernate.reveng.xml
+configFile=/ufhealth_jmrmyy/src/main/java/hibernate.cfg.xml
+createConfigFile=false
+addLibs2Classpath=true

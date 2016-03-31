@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:jaxws="http://cxf.apache.org/jaxws" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:util="http://www.springframework.org/schema/util"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://cxf.apache.org/core
+        http://cxf.apache.org/schemas/core.xsd
+        http://cxf.apache.org/jaxws
+        http://cxf.apache.org/schemas/jaxws.xsd">
+    <bean id="cxfService" class="com.ufida.hap.cxf.CXFService"
+        factory-bean="cxfServiceF" factory-method="create" />
+
+    <bean id="cxfServiceF" class="org.apache.cxf.jaxws.JaxWsProxyFactoryBean">
+         <!--  
+         <property name="address"
+            value="http://10.170.10.59:8081/g3_bs/services/webserver" />
+       -->
+        <property name="address" value="http://localhost:8888/ufhealth_rmyy/services/webserver"/>
+        <property name="serviceClass" value="com.ufida.hap.cxf.CXFService"></property>
+        <property name="outInterceptors">
+            <list>
+                <bean class="org.apache.cxf.interceptor.LoggingOutInterceptor" />
+                <bean class="com.ufida.hap.test.webservice.support.AddSoapHeader"></bean>
+            </list>
+        </property>
+        <property name="inInterceptors">
+            <list>
+                <bean class="org.apache.cxf.interceptor.LoggingInInterceptor" />
+                <bean class="com.ufida.hap.test.webservice.support.ReadSoapHeader"></bean>
+            </list>
+        </property>
+    </bean>
+</beans>

@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://java.sun.com/xml/ns/j2ee" xmlns:javaee="http://java.sun.com/xml/ns/javaee"
+	xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd"
+	id="WebApp_ID" version="2.4">
+	<display-name>luapp</display-name>
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>/WEB-INF/hapHome/spring/spring-*.xml</param-value>
+	</context-param>
+	<context-param>
+		<param-name>hapHome</param-name>
+		<param-value>/WEB-INF/hapHome</param-value>
+	</context-param>
+	<context-param>
+		<param-name>loaderLocations</param-name>
+		<param-value>classpath*:com/ufida/hap/**/Module*.class</param-value>
+		<!-- <param-value>classpath*:com/ufida/hap/**/Module*;classpath*:net/pri/j9/**/Module*</param-value> -->
+	</context-param>
+	<context-param>
+		<param-name>weblogic.httpd.inputCharset./*</param-name>
+		<param-value>UTF-8</param-value>
+	</context-param>
+	<filter>
+		<filter-name>EncodingFilter</filter-name>
+		<filter-class>com.ufida.hap.web.filter.EncodingFilter</filter-class>
+	</filter>
+	<filter>
+		<filter-name>SSOClient</filter-name>
+		<filter-class>com.ufida.hapi.sso.agent.SingleSignOnClient</filter-class>
+	</filter>
+	
+   <!--  <filter>
+		<filter-name>basexml</filter-name>
+		<filter-class>com.yonyou.h.filter.Afilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>basexml</filter-name>
+		<url-pattern>/services/*</url-pattern>
+	</filter-mapping> -->
+	
+	<filter-mapping>
+		<filter-name>EncodingFilter</filter-name>
+		<url-pattern>*.do</url-pattern>
+	</filter-mapping>
+	<filter-mapping>
+		<filter-name>EncodingFilter</filter-name>
+		<url-pattern>/json/*</url-pattern>
+	</filter-mapping>
+	<filter-mapping>
+		<filter-name>EncodingFilter</filter-name>
+		<url-pattern>/services/*</url-pattern>
+	</filter-mapping>
+	
+	
+	<filter-mapping>
+		<filter-name>EncodingFilter</filter-name>
+		<url-pattern>/ImageSource</url-pattern>
+	</filter-mapping>
+	<filter-mapping>
+		<filter-name>SSOClient</filter-name>
+		<url-pattern>*.do</url-pattern>
+	</filter-mapping>
+	<listener>
+		<listener-class>com.ufida.hap.web.listener.HapWebListener</listener-class>
+	</listener>
+	
+	<servlet>
+		<servlet-name>json</servlet-name>
+		<servlet-class>com.ufida.hap.web.servlet.JsonGatewayServlet</servlet-class>
+	</servlet>
+	
+	<servlet>
+		<servlet-name>cxf</servlet-name>
+		<servlet-class>org.apache.cxf.transport.servlet.CXFServlet</servlet-class>
+		<load-on-startup>2</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>cxf</servlet-name>
+		<url-pattern>/services/*</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>json</servlet-name>
+		<url-pattern>/json/*</url-pattern>
+	</servlet-mapping>
+	
+	<session-config>
+		<session-timeout>600</session-timeout>
+	</session-config>
+</web-app>

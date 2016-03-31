@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="gb2312"?>
+<hap-config>
+	<!--
+		appSysName：应用系统名称 
+		defaultFlipPageSize：默认翻页每页记录条数，默认10
+		runningMode：系统运行模式，develop - 开发模式（启动服务不载入Sequence,Rule等）；其它反之，默认develop
+		useSequence: 是否使用框架Sequence，如果需要则框架会进行一些初始化工作，默认false
+		tempDir：临时目录相对于系统配置文件目录内的文件夹名称，默认temp
+		uploadSizeMax：上传文件大小限制，以兆为单位，默认10M
+		csCompress: 是否对CS架构的返回数据超过10K大小时进行压缩传输（需要客户端DLL支持）
+		cacheEnabled: 是否启用缓存机制（包括代码表、参数表缓存），具体缓存配置在cacheConfig.xml中，默认为false
+		clientRIA: 是否丰富型互联网应用程序，false时为仅jquery；true时为jquery+ext， 默认为true
+		systemLoader: 系统装载器接口com.ufida.hap.struts.SystemLoader实现，启动时将调用init，停止时调用destroy
+	-->
+	<globals appSysName="G" defaultFlipPageSize="10" runningMode="develop"
+		useSequence="false" tempDir="temp" uploadSizeMax="10" csCompress="false"
+		cacheEnabled="false" clientRIA="false" systemLoader="sysLoader"/>
+
+    <!--        
+        cxfLDAId: CXF WEBSERVICE框架登录方法ID 
+        cxfSCI: 是否强行SESSION与IP进行匹配。
+        cxfSCN: 是否充许CXF同一用户多处登录
+        cxfLDAId="200000"
+      -->
+    <cxfService  cxfSCI="true" cxfSCN="false"/>
+	<!--
+	    excelTemplateHome: Excel模板文件和SQL定制文件等的存放路径，默认值为template，即WEB-INF/hapHome/template
+        也可以配置为绝对路径（在其它地方维护报表配置文件） 
+        quartzEnable: 是否启用quartz定时调度服务
+        quartzExcelReload：是否重载excel定时任务，如果重载则遍历所有报表模板配置文件加载定时任务
+        quartzShutdown_WaitForJobsToComplete: 是否在quartz服务停止时，等待正在执行的任务完成
+	 -->
+	<report excelTemplateHome="template" quartzEnable="false"
+		quartzExcelReload="true" quartzShutdown_WaitForJobsToComplete="false" />
+		
+	<!--
+	          用于框架码表填充支持
+        tableName: 默认代码表名称 
+        valueField: 默认代码值字段名称
+        textField：默认代码文本字段名称
+        orderBy: 默认排序字段名称
+        typeField: 默认代码类型字段名称
+     -->
+	<code tableName="tn" valueField="vf" textField="tf" orderBy="ob"
+		typeField="ct" />
+		
+    <!--
+                    用于配置HSQL数据库，一般用于系统演示
+       hsqlEnabled: 是否启用HSQL数据库
+       hsqlFile: HSQL数据库文件路径，可以为文件系统绝对路径，或相对于hapHome的路径
+       hsqlAlias: HSQL数据库连接别名，可用"jdbc:hsqldb:hsql://[host]/[hsqlAlias]"连接
+     -->
+	<hsql hsqlEnabled="false" hsqlFile="hsql/sample/sample" hsqlAlias="sample" />
+	
+	<!-- 
+	       是否启用HAP-I远程接口，默认false
+	 -->
+	<hapi hapiEnabled="false"/>
+	
+	<!--
+	   SSO功能配置
+	   ssoEnabled: 是否启用sso
+	   serverSite: sso server（hapi）地址  必填
+	   serverUrl：sso 服务URL 必填，默认为 /services/UserContextService
+	   loginUrl：sso 登录URL 默认为 /module/hapi/entry.do
+	   loginFailurePage：登录失败跳转页面
+	   localAppName：此应用在hapi中注册的应用名
+	   exceptServletUrl：不需启用sso的servlet URL，以%%分隔，可使用正则表达式
+	       (sample: /${CLIENT_CONTEXT}/permitPasswordAction*%%/${CLIENT_CONTEXT}/toLoginPasswordAction*)
+	   clientContext：自定义路径，替换${CLIENT_CONTEXT}，供exceptServletUrl中使用
+	-->
+	<sso ssoEnabled="true" serverSite="http://localhost:8888/hapi" serverUrl="/services/UserContextService" 
+        loginUrl="/module/hapi/entry.do" exceptServletUrl = "" localAppName="g3_hb" clientContext = ""
+        loginFailurePage = "http://localhost:8888/hapi/module/hapi/entry.do"/>
+        
+    <plugin ssoService="ssoService" ssoConfigLoader="ssoConfigLoader"/>
+</hap-config>

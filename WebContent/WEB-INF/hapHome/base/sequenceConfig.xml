@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sequence-configs>
+	<!-- <sequence seqName="TESTSEQ" pattern="ccffSS" constant="" length="15"
+		reinitmode="" minvalue="1" maxvalue="9999999" startwith="1000"
+		increment="1" cache="20" cycle="true" order="true" /> -->
+
+</sequence-configs>

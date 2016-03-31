@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:cxf="http://cxf.apache.org/core" xmlns:jaxws="http://cxf.apache.org/jaxws"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://cxf.apache.org/core
+        http://cxf.apache.org/schemas/core.xsd
+        http://cxf.apache.org/jaxws
+        http://cxf.apache.org/schemas/jaxws.xsd">
+	<import resource="classpath:META-INF/cxf/cxf.xml" />
+	<import resource="classpath:META-INF/cxf/cxf-extension-soap.xml" />
+	<import resource="classpath:META-INF/cxf/cxf-servlet.xml" />
+
+	<bean id="cxf" class="org.apache.cxf.bus.CXFBusImpl">
+		<property name="inInterceptors">
+			<list>
+				<bean class="org.apache.cxf.interceptor.LoggingInInterceptor"></bean>
+				<ref bean="gwInterceptor"/>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="gwInterceptor" class="com.yonyou.h.util.GatewayInInterceptor" />
+	
+	
+	<bean id="luAppServiceBean" class="com.yonyou.h.webservices.LuAppServiceImpl" >
+	</bean>
+	
+
+	<jaxws:server id="LuAppService" address="/luapp" 
+			serviceClass="com.yonyou.h.webservices.LuAppService">
+		<jaxws:serviceBean>
+			<ref bean="luAppServiceBean"/>
+		</jaxws:serviceBean>
+	</jaxws:server>
+</beans>

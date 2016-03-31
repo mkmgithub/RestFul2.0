@@ -1,0 +1,166 @@
+<HTML>
+<HEAD>
+<META NAME="GENERATOR" Content="Microsoft Visual Studio 6.0">
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<TITLE>BI-Plugin</TITLE>
+
+<SCRIPT LANGUAGE=javascript src="resources/bi_public.js"></SCRIPT>
+<SCRIPT ID=clientEventHandlersJS LANGUAGE=javascript>
+<!--
+
+function getDesireVersion()
+{
+	var strVersion = "";
+	var strCodeBase = pluginCodeBase.value;
+	var nPos = strCodeBase.indexOf("#");
+	if(nPos > 0)
+	{
+		nPos = strCodeBase.indexOf("=", nPos);
+		if(nPos > 0)
+			strVersion = strCodeBase.substr(nPos+1);
+	}
+	return strVersion ;
+}
+
+function window_onload()
+{
+	var strCodeBase = parent.document.all.item("pluginCodeBase").value;
+	pluginCodeBase.value = strCodeBase;
+
+	var strDownloadUrl = "", strVersion = "";
+	var nPos = strCodeBase.indexOf("#");
+	if(nPos > 0)
+	{
+		strDownloadUrl = strCodeBase.substr(0, nPos);
+
+		nPos = strCodeBase.indexOf("=", nPos);
+		if(nPos > 0)
+			strVersion = strCodeBase.substr(nPos+1);
+	}
+	else
+	{
+		strDownloadUrl = strCodeBase;
+	}
+
+	if(checkBIVersion(strVersion))
+	{
+		var psdiv = parent.document.all.item("pluginSetup");
+		if(typeof(psdiv) == "object" && psdiv != null)
+			psdiv.removeNode(true);
+	}
+	else
+	{
+		var setupType = getCookie("setupType");
+		if(setupType != "1")
+		{
+			strDownloadUrl = strDownloadUrl.replace("cab", "exe");
+			strDownloadUrl = strDownloadUrl.replace("BISetup.ocx", "SunBI.exe");
+			downloadSetup.href = strDownloadUrl;
+		}
+		
+		if(setupType == "1")
+			doSetupCAB();
+		else if(setupType == "2")
+			doSetupOCX();
+	}
+
+	window.setTimeout("timerCheckFinish()", 20000);
+}
+
+function timerCheckFinish()
+{
+	//某些IE版本存在bug，再次刷新页面不触发onload，所以通过定时器检查插件安装完成
+	var desireVersion = getDesireVersion();
+	if(checkBIVersion(desireVersion))
+	{
+		var psdiv = parent.document.all.item("pluginSetup");
+		if(typeof(psdiv) == "object" && psdiv != null)
+			psdiv.removeNode(true);
+	}
+	else
+	{
+		window.setTimeout("timerCheckFinish()", 10000);
+	}
+}
+
+function doSetupCAB()
+{
+	var strCodeBase = pluginCodeBase.value;
+	setTempCookie("setupType", "1");
+
+	var html = "<DIV align=center>\r\n";
+	html += "<TABLE cellSpacing=1 cellPadding=1 width=\"75%\" border=0>\r\n";
+	html += "<DIV align=center><SPAN id=download_text><FONT color=sandybrown>正在下载插件，请稍候 ...</FONT></SPAN></DIV>\r\n";
+	html += "<OBJECT id=download_sunobj width=\"0px\" height=\"0px\" \r\n";
+	html += "classid=clsid:0F592249-ADE1-4001-8F17-36D406636C0B \r\n";
+	html += "  codebase=" + strCodeBase + " >\r\n";
+	html += "</OBJECT>\r\n";
+	html += "<P><DIV align=center><IMG id=download_gif src=\"images/download.gif\"></DIV></P>\r\n";
+	html += "<P>&nbsp;</P>\r\n";
+	html += "<DIV align=left><FONT color=green>请留意浏览器顶端，第一次会弹出安装插件的提示，请点击允许安装。</FONT></DIV>\r\n";
+	html += "</TABLE></DIV>\r\n";
+	loadback.style.display="none";
+	promptHtml.style.paddingLeft=0;
+	promptHtml.innerHTML = html;
+
+	window.setTimeout("timerCheckFinish()", 20000);
+}
+
+function doSetupOCX()
+{
+	var strCodeBase = pluginCodeBase.value;
+	setTempCookie("setupType", "2");	//setupType: 1-CAB  2-OCX Others-EXE
+	
+	var strPluginUrl = "";
+	var nPos = strCodeBase.lastIndexOf("/");
+	if(nPos > 0)
+		strPluginUrl = strCodeBase.substr(0, nPos+1) + "SunBI.exe";
+			
+	var html = "<BR><FONT color=green><DIV id=promptText>正在下载并安装插件，请稍候 ... &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href='javascript:close()'>关闭</a></DIV></FONT>\r\n";
+	html += "<OBJECT id=PlugSetup style=\"LEFT: 0px; TOP: 0px; width:326;height:130;\" ";
+	html += "classid=\"clsid:1239F6AC-81B4-4B6F-9B4E-6B31FC74C3D0\" ";
+	html += "codeBase=\"" + strCodeBase + "\" >";
+	html += "<PARAM NAME=\"PluginUrl\" VALUE=\"" + strPluginUrl + "\" >";
+	html += "</OBJECT>";
+	html += "<BR><BR><span color=green>请留意浏览器顶端，第一次会弹出安装插件的提示，请点击允许安装。</span>\r\n";
+	loadback.style.display="none";
+	
+	promptHtml.style.top=document.body.clientHeight/2-70;
+	promptHtml.style.left=document.body.clientWidth/2-150;
+	promptHtml.style.height=130;
+	promptHtml.style.width=300;
+	promptHtml.style.display="";
+	promptHtml.style.paddingLeft=0;
+	promptHtml.innerHTML = html;
+	
+	window.setTimeout("timerCheckFinish()", 20000);
+}
+
+function doDownload()
+{
+	//监控下载安装完毕，即移除提示下载信息
+	setTempCookie("setupType", "0");
+	window.setTimeout("timerCheckFinish()", 20000);
+}
+function close(){
+parent.document.all.pluginInFrame.style.display="none";
+parent.document.location.reload();
+}
+//-->
+</SCRIPT>
+</HEAD>
+
+<BODY style="MARGIN: 0px;font-size:9pt;" scroll=no LANGUAGE=javascript onload="return window_onload()" bgColor=#e6e6e6>
+<INPUT type=hidden id=pluginCodeBase value="">
+<DIV style="background:url('resources/images/frame/downloadplugIn.png') no-repeat;height:205px;height:382" id="loadback">
+<div style="color:#008cff;padding-left:110px;padding-top:30">系统检测到您没有安装卫生<br>信息平台分析报表插件或插<br>件版本太低需要升级。</div>
+<DIV style="color:#008cff;padding-left:110px;padding-top:0;margin-top:0;">
+ 	<br>
+ 	<span style="color:#349900">请选择您的安装/升级方式：</span>
+ 	<br>方式一：<A onclick="doSetupOCX();" href="#">自动下载并安装</A>
+ 	<br>方式二：<A id=downloadSetup onclick="doDownload();" href="#">下载安装程序，手动安装</A>
+</DIV>
+</DIV>
+<div id=promptHtml style="color:#008cff;margin-left:30px;"></div>
+</BODY>
+</HTML>

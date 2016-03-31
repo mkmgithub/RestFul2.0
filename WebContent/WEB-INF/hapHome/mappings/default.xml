@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="gb2312"?>
+<xml><!--   -->
+	<baseconfig isOld="false" logoutAction="200999"
+		forceCompress="false" loginAction="200000" checkLoginAction="299999"
+		isloged="true" />
+	<!-- 登录第一级会话级权限排除，在这里排除的方法将不会得到SESSION会话中任何数据 -->
+	<exclude>
+
+		<!-- 其他 -->		
+		<exaction id="1" />
+	</exclude>
+	<!-- log -->
+	<log>
+	</log>
+	<!--
+		filter 二级过滤
+		inculd和exculd要多个表达式可以用,分格,{exludeAction}是特殊标记，表示包含上面exclude标记所有集合
+	-->
+	<filters>
+		<filter id="commFilter" filterType="spring" includ="*"
+			exclud="200000,200010,{exludeAction}" bean="loginFilter" />
+	</filters>
+	<!-- <ref file="archivemgr_mappings.xml" />
+	<ref file="registedmgr_mappings.xml" />
+	<ref file="dictmgr_mappings.xml" />
+	<ref file="accountmgr_mappings.xml" />
+	<ref file="prescriptionmgr_mappings.xml"/>
+	<ref file="fundsmgr_mappings.xml"/>
+	<ref file="medicalcardmgr_mappings.xml"/>
+	<ref file="inpatientmgr_mappings.xml"/> -->
+</xml>

@@ -2,28 +2,28 @@ package com.yonyou.h.services;
 
 import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
 
-import com.yonyou.h.domain.person.PersonBaseInfo;
-import com.yonyou.h.domain.person.Resident;
-import com.yonyou.h.util.FunctionRet;
-import com.yonyou.h.util.ParamsUtil;
-import com.ufida.ehr.empi.model.Person;
+import org.dom4j.Document;
+import org.dom4j.DocumentException;
+import org.dom4j.DocumentHelper;
+import org.dom4j.Element;
+
 import com.ufida.g3.domain.da.PoDaDaGrda0;
 import com.ufida.g3.domain.da.PoDaDaGrda1;
 import com.ufida.g3.domain.da.PoDaDaGrda2;
 import com.ufida.g3.domain.dic.ZdOptions;
 import com.ufida.hap.core.exception.AppException;
-import com.ufida.hap.util.BeanUtils;
 import com.ufida.hap.util.ConvertUtils;
 import com.ufida.hap.util.DBAgent;
 import com.ufida.hap.util.DateUtils;
 import com.ufida.hap.util.ParamUtil;
+import com.yonyou.h.domain.person.PersonBaseInfo;
+import com.yonyou.h.domain.person.Resident;
+import com.yonyou.h.util.FunctionRet;
+import com.yonyou.h.util.ParamsUtil;
 
 public class LuPhs4AppIntfImpl implements LuPhs4AppIntf {
 	
@@ -182,5 +182,71 @@ public class LuPhs4AppIntfImpl implements LuPhs4AppIntf {
 		} catch (Exception ex) {
 			return FunctionRet.buildFailXml(ex.getMessage());
 		}
+	}
+
+	public String save2Phs(String xml) {
+		try {
+			Document doc = DocumentHelper.parseText(xml);
+			//处理个人信息
+			Element ment= (Element) doc.selectSingleNode("personbaseinfo");
+			Map<String, Object> omap = new HashMap<String, Object>();
+			List<Element> childments = ment.elements();
+			for (int k=0; k< childments.size(); k++){
+				Element ele = childments.get(k);
+				omap.put( ele.getName(), ele.getTextTrim());
+			}
+			PersonBaseInfo person = (PersonBaseInfo) ParamUtil.mapToBean(omap, PersonBaseInfo.class, true);
+			//根据签约信息更新数据库中的信息 --》先查找到对应的人员
+			Map<String,Object> condi = new HashMap<String, Object>();
+			condi.put("sfzh", person.getPapernum());
+			condi.put("state", "1");
+			condi.put("sqbm[like]", "440303%");
+			List<PoDaDaGrda0> da0List = getDBAgent().find(PoDaDaGrda0.class, condi, null);
+			if (da0List == null || da0List.size()==0){
+				//如果在罗湖找不到在整个区中所有的档案查找
+				condi.clear();
+				condi.put("sfzh", person.getPapernum());				
+				da0List = getDBAgent().find(PoDaDaGrda0.class, condi, null);
+			}
+			if (da0List.size()==0){
+				//新增的处理
+			}else{
+				PoDaDaGrda0 da0;
+				if (da0List.size() ==1){
+					da0 = da0List.get(0);
+				}else{
+					PoDaDaGrda0 da=null;
+					for (PoDaDaGrda0 d0 : da0List){
+						if (d0.getState().equals("1") )
+							da = d0;
+					}
+					if (da ==null)
+						da = da0List.get(0);
+					da0 = da;
+				}
+				//更新到对应的签约信息
+				StringBuilder sb = new StringBuilder();				
+				sb.append("UPDATE DA_GRDA1 SET ISQY=:ISQY,QYFS=2,QYRQ=:QYRQ,QYYSMC=:QYYSMC,QYSQBM=:QYSQBM");
+				sb.append(" WHERE EMPI=:EMPI");
+				condi.clear();
+				
+				condi.put("EMPI", da0.getEmpi());
+				condi.put("ISQY", ConvertUtils.toLong( person.getSigncontract()));
+				condi.put("QYRQ", DateUtils.dateToLongDonly( DateUtils.parse( person.getSigndate())));
+				condi.put("QYYSMC", person.getDutydoctor());
+				condi.put("QYSQBM", person.getManageorg());
+				getDBAgent().executeSQL(sb.toString(), condi);
+			}
+			return FunctionRet.buildOpSuccessXml("保存更新签约人员信息成功！");
+		} catch (Exception e) {			
+			e.printStackTrace();
+			return FunctionRet.buildFailXml( e.getMessage());
+		}
+		
+		
+	}
+
+	public String select4Phs(String xml) {		
+		return null;
 	}
 }

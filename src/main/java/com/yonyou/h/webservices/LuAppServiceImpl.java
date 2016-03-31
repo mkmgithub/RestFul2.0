@@ -27,14 +27,12 @@ public class LuAppServiceImpl implements LuAppService {
 		return luphs4AppIntf.getPHS(param);
 	}
 
-	public String SetHealth4PADBus(String param) {
-		// TODO Auto-generated method stub
-		return null;
+	public String SetHealth4PADBus(String param) {		
+		return luphs4AppIntf.select4Phs(param);
 	}
 
 	public String SetHealthPADBus(String param) {
-		// TODO Auto-generated method stub
-		return null;
+		return luphs4AppIntf.save2Phs(param);
 	}		
 	
 }

@@ -59,7 +59,10 @@ public class LuPhs4AppIntfImpl implements LuPhs4AppIntf {
 			/* ResidentName; Age; PaperNum; CardID; */
 			String xm = ConvertUtils.toString(input.get("residentname"));
 			Map<String, Object> condi = new HashMap<String, Object>();
-			if (input.containsKey("papernum")) {
+			if (input.containsKey("empi")){
+				condi.put("empi[=]", ConvertUtils.toLong( input.get("empi")));
+			}
+			if (condi.size() == 0 && input.containsKey("papernum")) {
 				condi.put("sfzh[=]", ConvertUtils.toString(input.get("papernum")));
 			}
 			if (condi.size() == 0 && input.containsKey("cardid")) {
@@ -89,7 +92,7 @@ public class LuPhs4AppIntfImpl implements LuPhs4AppIntf {
 			PersonBaseInfo person = new PersonBaseInfo();
 			List<PoDaDaGrda0> da0List = getDBAgent().find(PoDaDaGrda0.class, condi, null);
 			for (PoDaDaGrda0 da0 : da0List) {
-				if (da0.getXm().equalsIgnoreCase(xm)) {
+				if (xm==null || da0.getXm().equalsIgnoreCase(xm)) {
 					person.setResidename(da0.getXm());
 					person.setEmpi(da0.getEmpi().toString());
 					person.setCardid(ConvertUtils.toString(da0.getSbbh()));
@@ -172,13 +175,13 @@ public class LuPhs4AppIntfImpl implements LuPhs4AppIntf {
 					}
 					resident.setPersonbaseinfo(person);
 					if (person.getResidename().equals("")) {
-						return FunctionRet.buildOpSuccessXml("未查到对满足条件的个人档案数据！");
+						return FunctionRet.buildOpSuccessXml("未查到满足条件的个人档案数据！");
 					} else {
 						return resident.buildResidentXml().asXML();
 					}
 				}
 			}
-			return FunctionRet.buildOpSuccessXml("未查到对满足条件的个人档案数据！");
+			return FunctionRet.buildOpSuccessXml("未查到满足条件的个人档案数据！");
 		} catch (Exception ex) {
 			return FunctionRet.buildFailXml(ex.getMessage());
 		}

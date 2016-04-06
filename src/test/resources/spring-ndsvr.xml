@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:cxf="http://cxf.apache.org/core"
+	xmlns:sec="http://cxf.apache.org/configuration/security"
+	xmlns:http-conf="http://cxf.apache.org/transports/http/configuration"
+	xsi:schemaLocation=" http://www.springframework.org/schema/beans 
+	http://www.springframework.org/schema/beans/spring-beans-2.0.xsd 
+	http://cxf.apache.org/core http://cxf.apache.org/schemas/core.xsd 
+	http://cxf.apache.org/configuration/security 
+	http://cxf.apache.org/schemas/configuration/security.xsd 
+	http://cxf.apache.org/transports/http/configuration
+	http://cxf.apache.org/schemas/configuration/http-conf.xsd
+	http://cxf.apache.org/jaxws 
+	http://cxf.apache.org/schemas/jaxws.xsd">
+
+	<import resource="classpath:META-INF/cxf/cxf.xml" />
+	<import resource="classpath:META-INF/cxf/cxf-extension-soap.xml" />
+	<import resource="classpath:META-INF/cxf/cxf-servlet.xml" />
+
+
+	<!-- <http-conf:conduit name="*.http-conduit">
+		<http-conf:proxyAuthorization> <sec:UserName>***</sec:UserName> <sec:Password>***</sec:Password> 
+			</http-conf:proxyAuthorization>
+		ProxyServer IP ProxyServerPort PORT ProxyServerType: HTTP or SOCKS
+		<http-conf:client ProxyServer="192.168.6.214"
+			ProxyServerPort="808" ProxyServerType="HTTP" Connection="Keep-Alive"
+			AllowChunking="false" ConnectionTimeout="50000" ReceiveTimeout="120000" />
+	</http-conf:conduit> -->
+
+	<bean id="webservicesoap"
+		class="org.tempuri.WebServiceSoap"
+		factory-bean="webservicesoapF" factory-method="create" />
+
+	<bean id="webservicesoapF" class="org.apache.cxf.jaxws.JaxWsProxyFactoryBean">
+		<property name="address"
+			value="http://183.237.234.162:8416/WebService.asmx?WSDL" />
+		<property name="serviceClass"
+			value="org.tempuri.WebServiceSoap"></property>
+		<property name="outInterceptors">
+			<list>
+				<bean class="org.apache.cxf.interceptor.LoggingOutInterceptor" />
+			</list>
+		</property>
+		<property name="inInterceptors">
+			<list>
+				<bean class="org.apache.cxf.interceptor.LoggingInInterceptor" />
+			</list>
+		</property>
+	</bean>
+
+</beans>

@@ -8,4 +8,5 @@
 
 	<bean id="commonIntf" class="com.yonyou.h.services.CommonIntfImpl"/>
 	<bean id="luphs4AppIntf" class="com.yonyou.h.services.LuPhs4AppIntfImpl"/>
+	<bean id="lu4AppJobIntf" class= "com.yonyou.h.services.Lu4AppJobImpl"/>
 </beans>

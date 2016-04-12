@@ -332,17 +332,20 @@ public class LuPhs4AppIntfImpl implements LuPhs4AppIntf {
 		da0.setCzlx(personInfo.getResidestatuscd());
 		da0.setDah(personInfo.getResidentid());
 		da0.setEmpi(ConvertUtils.toLong(personInfo.getEmpi())); 
-		//常住类别  需确定是否需要转换
 		da0.setHjlb(personInfo.getResidecd());
 		da0.setJdrq(DateUtils.dateToLong(DateUtils.currentDate()));
 		da0.setJdrqstr(personInfo.getBuilddate());
 		da0.setJdry(personInfo.getBuilder());
 		da0.setJdrymc(personInfo.getBuilder());
-		//建档社区
 		da0.setJdsq(personInfo.getBuildorg()); 
 		da0.setJtdaid(ConvertUtils.toLong(personInfo.getFamilyid()));
         
-
+        //常住类型 
+        Long czlx=ConvertUtils.toLong(personInfo.getResidestatuscd());
+        if(czlx==2|| czlx==3|| czlx==4)
+               czlx--;
+        da0.setCzlx(czlx.toString());
+        
 		da0.setSbbh(personInfo.getCardid());
 		da0.setSbkh(personInfo.getCardid());
 		da0.setSfzh(personInfo.getPapernum());
@@ -368,9 +371,9 @@ public class LuPhs4AppIntfImpl implements LuPhs4AppIntf {
 		da1.setEmpi(da0.getEmpi());
 		da1.setGzdw(personInfo.getWorkunit());
 		da1.setHjdz(personInfo.getRegdetail());
-		//是否需要转换  需要确定
+		//婚姻状况  需要确定是否转换  
 		da1.setHyzk(personInfo.getMarriagecd());
-		//需要确定是否转换
+		//户主关系   需要确定是否转换
 		da1.setHzgx(personInfo.getRelation());
 		da1.setIsqy(ConvertUtils.toLong(personInfo.getSigncontract()));
 		da1.setJtdz(personInfo.getRegdetail());
@@ -392,10 +395,16 @@ public class LuPhs4AppIntfImpl implements LuPhs4AppIntf {
         da1.setQyfs(2L);
         da1.setIsqy(1L);
         da1.setQysqbm(personInfo.getManageorg());
-        //户籍类别
-        da1.setHklb(personInfo.getRegtypecd());
-		// 需要修改
-		da1.setYlfd(null);
+		//需要确定是: 字符列表中顺序和文档中的不一样，还有就是有的名称不一样。例如：公费医疗
+       String fd = personInfo.getInsurancecd();
+        for (int k=0;k<  YlfdNames.length; k++){
+        	if (YlfdNames[k].equalsIgnoreCase( fd)){
+        		da1.setYlfd(Long.valueOf(k));
+        		break;
+        	}
+        		
+        }
+		
 
         
 		da2.setEmpi(da0.getEmpi());

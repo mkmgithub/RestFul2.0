@@ -328,26 +328,25 @@ public class LuPhs4AppIntfImpl implements LuPhs4AppIntf {
 		PoDaDaGrda1 da1 = new PoDaDaGrda1();
 		PoDaDaGrda2 da2 = new PoDaDaGrda2();
  
-		da0.setCsrq(DateUtils.dateToLongDonly(DateUtils.parse(personInfo.getBirthday())));
-		da0.setCsrqstr(personInfo.getBirthday());
+		da0.setCsrq(DateUtils.dateToLongDonly(DateUtils.parse(personInfo.getBirthday()))); 
 		da0.setCzlx(personInfo.getResidestatuscd());
 		da0.setDah(personInfo.getResidentid());
 		da0.setEmpi(ConvertUtils.toLong(personInfo.getEmpi())); 
+		//常住类别  需确定是否需要转换
 		da0.setHjlb(personInfo.getResidecd());
-        //建档日期 需要确定
-		da0.setJdrq(DateUtils.dateToLong(new CommonIntfImpl().getDbDate(getDBAgent())));
+		da0.setJdrq(DateUtils.dateToLong(DateUtils.currentDate()));
 		da0.setJdrqstr(personInfo.getBuilddate());
 		da0.setJdry(personInfo.getBuilder());
 		da0.setJdrymc(personInfo.getBuilder());
+		//建档社区
 		da0.setJdsq(personInfo.getBuildorg()); 
 		da0.setJtdaid(ConvertUtils.toLong(personInfo.getFamilyid()));
-
+        
 
 		da0.setSbbh(personInfo.getCardid());
 		da0.setSbkh(personInfo.getCardid());
 		da0.setSfzh(personInfo.getPapernum());
-		da0.setSqbm(personInfo.getManageorg());
-		//状态固定为1
+		da0.setSqbm(personInfo.getManageorg()); 
 		da0.setState("1");
 		String xb=personInfo.getSexcd();
 		if(xb.equals("男"))
@@ -369,7 +368,9 @@ public class LuPhs4AppIntfImpl implements LuPhs4AppIntf {
 		da1.setEmpi(da0.getEmpi());
 		da1.setGzdw(personInfo.getWorkunit());
 		da1.setHjdz(personInfo.getRegdetail());
+		//是否需要转换  需要确定
 		da1.setHyzk(personInfo.getMarriagecd());
+		//需要确定是否转换
 		da1.setHzgx(personInfo.getRelation());
 		da1.setIsqy(ConvertUtils.toLong(personInfo.getSigncontract()));
 		da1.setJtdz(personInfo.getRegdetail());
@@ -387,10 +388,16 @@ public class LuPhs4AppIntfImpl implements LuPhs4AppIntf {
 		da1.setSqbm(personInfo.getManageorg());
 		da1.setXl(personInfo.getEducationcd());
 		da1.setXx(personInfo.getBloodcd());
+        da1.setQyysmc(personInfo.getDutydoctor());
+        da1.setQyfs(2L);
+        da1.setIsqy(1L);
+        da1.setQysqbm(personInfo.getManageorg());
+        //户籍类别
+        da1.setHklb(personInfo.getRegtypecd());
 		// 需要修改
 		da1.setYlfd(null);
 
-
+        
 		da2.setEmpi(da0.getEmpi());
 		da2.setSg(ConvertUtils.toDouble(personInfo.getHeight()));
 		da2.setTw(ConvertUtils.toDouble(personInfo.getHip()));
